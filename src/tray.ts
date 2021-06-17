@@ -1,4 +1,7 @@
-import { app } from 'electron'
+import { app, screen } from 'electron'
+import { createStartWindow } from './start'
+import * as path from 'path';
+
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function makeTray() { 
@@ -10,7 +13,8 @@ export function makeTray() {
         {
             label: "Call another mascot!",
             click: function (): void {
-                console.log("Clicked on mascot")
+                const { width, height } = screen.getPrimaryDisplay().workAreaSize
+                createStartWindow(path.join(__dirname, "../foxtop.ico"), width, height)
             }
         },
         {

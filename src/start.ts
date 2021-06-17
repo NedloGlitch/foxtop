@@ -7,6 +7,7 @@ export const createStartWindow = (icon: string, width: number, height: number): 
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     //enableLargerThanScreen:true,
+    skipTaskbar:true,
     height:height, 
     width: width-1,
     icon: icon,

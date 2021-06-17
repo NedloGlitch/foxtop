@@ -16,7 +16,7 @@ const iconpath = path.join(__dirname, "../foxtop.ico");
 
 function initialize(): void {
   const { width, height } = screen.getPrimaryDisplay().workAreaSize
-  console.log(width, height)
+  //console.log(width, height)
   createStartWindow(iconpath, width, height)
 
   tray = new Tray(iconpath)

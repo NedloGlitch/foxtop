@@ -1,4 +1,11 @@
 {
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  },
   "env": {
     "browser": true,
     "es6": true,
@@ -12,4 +19,5 @@
       "plugin:import/warnings"
     ],
     "parser": "@typescript-eslint/parser"
+    
 }

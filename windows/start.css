@@ -16,4 +16,5 @@ h1 {
   height: 128px;
   width: 128px;
   align-self: center;
+  -webkit-app-region: drag;
 }

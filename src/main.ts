@@ -6,8 +6,7 @@ import { ipcMain } from 'electron';
 //import { ipcRenderer } from 'electron/renderer';
 
 
-const ipc = ipcMain
-
+app.commandLine.appendSwitch('disable-gpu-compositing')
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit();
@@ -20,10 +19,6 @@ const iconpath = path.join(__dirname, "../foxtop.ico");
 function initialize(): void {
 
   createStartWindow(iconpath)
-
-  ipc.on('closeApp', () => {
-    console.log("got event to close app")
-  })
 
   tray = new Tray(iconpath)
   tray.setToolTip('Foxtop')

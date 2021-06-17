@@ -6,10 +6,11 @@ export const createStartWindow = (icon: string): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     height: 600,
-    width: 800,
+    width: 600,
     icon: icon,
     transparent: true,
     frame: false,
+    alwaysOnTop:true,
     webPreferences:{
       nodeIntegration:true,
       //preload: path.join(__dirname, "preload.js"),
@@ -25,13 +26,13 @@ export const createStartWindow = (icon: string): void => {
     console.log("Ignore change, args: " + args[0])
   })
 
-  mainWindow.setAlwaysOnTop(true);
+  //mainWindow.setAlwaysOnTop(true);
   mainWindow.loadFile(path.join(__dirname, "../windows/start.html"));
 
-  ipcMain.on('closeApp', () => {
+  
+  /*ipcMain.on('closeApp', () => {
       console.log("got event to close app")
-    })
-
+    })*/
   // Open the DevTools.
   //mainWindow.webContents.openDevTools();
   //mainWindow.webContents.on('did-finish-load', function () {

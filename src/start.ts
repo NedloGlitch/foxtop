@@ -1,39 +1,29 @@
 import * as path from 'path';
-import { BrowserWindow, ipcMain } from 'electron';
+import { BrowserWindow, Menu} from 'electron';
+import { makeTray } from './tray';
 
 
 export const createStartWindow = (icon: string): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    height: 600,
-    width: 600,
+    //enableLargerThanScreen:true,
+    height:900, 
+    width: 1400,
     icon: icon,
     transparent: true,
     frame: false,
     alwaysOnTop:true,
     webPreferences:{
       nodeIntegration:true,
-      //preload: path.join(__dirname, "preload.js"),
       contextIsolation:false
     }
   });
-  //mainWindow.setIgnoreMouseEvents(true)
-  // and load the index.html of the app.
-  //console.log(path.join(__dirname, "../windows/start.html"))
-
-  ipcMain.on('set-ignore-mouse-events', (event, ...args) => {
-    BrowserWindow.fromWebContents(event.sender).setIgnoreMouseEvents(args[0], ...args)
-    console.log("Ignore change, args: " + args[0])
-  })
-
-  //mainWindow.setAlwaysOnTop(true);
-  mainWindow.loadFile(path.join(__dirname, "../windows/start.html"));
 
   
-  /*ipcMain.on('closeApp', () => {
-      console.log("got event to close app")
-    })*/
-  // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
-  //mainWindow.webContents.on('did-finish-load', function () {
+  mainWindow.loadFile(path.join(__dirname, "../windows/start.html"));
+  const contextMenu = Menu.buildFromTemplate(makeTray())
+  mainWindow.webContents.on('context-menu', function(){
+    contextMenu.popup()
+    //console.log("right click handler")
+  })
 };

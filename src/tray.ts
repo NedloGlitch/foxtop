@@ -8,6 +8,12 @@ export function makeTray() {
             enabled: false
         },
         {
+            label: "Call another mascot!",
+            click: function (): void {
+                console.log("Clicked on mascot")
+            }
+        },
+        {
             label: "Settings",
             click: function (): void {
                 console.log("Clicked on settings")

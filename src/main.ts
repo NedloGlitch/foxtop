@@ -2,8 +2,6 @@ import { app, BrowserWindow, Tray, Menu } from 'electron';
 import { createStartWindow } from './start'
 import { makeTray } from './tray'
 import * as path from 'path';
-import { ipcMain } from 'electron';
-//import { ipcRenderer } from 'electron/renderer';
 
 
 app.commandLine.appendSwitch('disable-gpu-compositing')

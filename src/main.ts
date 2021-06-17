@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Tray, Menu } from 'electron';
+import { app, BrowserWindow, Tray, Menu, screen } from 'electron';
 import { createStartWindow } from './start'
 import { makeTray } from './tray'
 import * as path from 'path';
@@ -15,8 +15,9 @@ let tray: any = null
 const iconpath = path.join(__dirname, "../foxtop.ico");
 
 function initialize(): void {
-
-  createStartWindow(iconpath)
+  const { width, height } = screen.getPrimaryDisplay().workAreaSize
+  console.log(width, height)
+  createStartWindow(iconpath, width, height)
 
   tray = new Tray(iconpath)
   tray.setToolTip('Foxtop')
@@ -39,7 +40,8 @@ app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
-    createStartWindow(iconpath);
+    const { width, height } = screen.getPrimaryDisplay().workAreaSize
+    createStartWindow(iconpath, width, height);
   }
 });
 

@@ -3,12 +3,12 @@ import { BrowserWindow, Menu} from 'electron';
 import { makeTray } from './tray';
 
 
-export const createStartWindow = (icon: string): void => {
+export const createStartWindow = (icon: string, width: number, height: number): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     //enableLargerThanScreen:true,
-    height:900, 
-    width: 1400,
+    height:height, 
+    width: width-1,
     icon: icon,
     transparent: true,
     frame: false,

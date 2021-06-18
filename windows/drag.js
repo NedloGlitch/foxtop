@@ -16,7 +16,7 @@ function dragElement(elmnt) {
       //console.log("placeholder")
     }
     else {
-      document.getElementById("mascot").src = "../mascots/eevee/Shime1.png"
+      document.getElementById("mascot").src = "../mascots/eevee/Shime12.png"
       e = e || window.event;
       e.preventDefault();
       // get the mouse cursor position at startup:

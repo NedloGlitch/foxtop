@@ -16,7 +16,7 @@ function dragElement(elmnt) {
       //console.log("placeholder")
     }
     else {
-      document.getElementById("mascot").src = "../mascots/eevee/Vee3.png"
+      document.getElementById("mascot").src = "../mascots/eevee/Shime1.png"
       e = e || window.event;
       e.preventDefault();
       // get the mouse cursor position at startup:
@@ -43,7 +43,7 @@ function dragElement(elmnt) {
 
   function closeDragElement() {
     // stop moving when mouse button is released:
-    document.getElementById("mascot").src = "../mascots/eevee/Vee1.png"
+    document.getElementById("mascot").src = "../mascots/eevee/Shime1.png"
     document.onmouseup = null;
     document.onmousemove = null;
   }

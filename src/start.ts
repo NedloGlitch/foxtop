@@ -8,16 +8,16 @@ export const createStartWindow = (icon: string, width: number, height: number): 
   const mainWindow = new BrowserWindow({
     //enableLargerThanScreen:true,
     skipTaskbar:true,
-    height:height, 
+    height: height+30, 
     width: width-1,
     icon: icon,
     transparent: true,
     frame: false,
     alwaysOnTop:true,
-    webPreferences:{
-      nodeIntegration:true,
-      contextIsolation:false
-    }
+    //webPreferences:{
+    //  nodeIntegration:true,
+    //  contextIsolation:false
+    //}
   });
 
   

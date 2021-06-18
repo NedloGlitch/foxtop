@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
+    "strict": true,
     "allowJs": false,
     "module": "commonjs",
     "noImplicitAny": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "outDir": "dist",
+    "rootDir": "./src",
+    "outDir": "./dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "paths": {

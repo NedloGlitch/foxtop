@@ -10,8 +10,7 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
   app.quit();
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-let tray: any = null
+let tray: Tray | undefined;
 const iconpath = path.join(__dirname, "../foxtop.ico");
 
 function initialize(): void {

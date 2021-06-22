@@ -1,20 +1,21 @@
-import { app, screen } from 'electron'
+import { app } from 'electron'
 import { createStartWindow } from './start'
-import * as path from 'path';
 
 
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export function makeTray() { 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export function makeTray(icon: string) { 
     const trayMenuTemplate = [
         {
+            icon: icon,
             label: "Foxtop",
-            enabled: false
+            click: function (): void {
+                app.focus()
+            }
         },
         {
             label: "Call another mascot!",
             click: function (): void {
-                const { width, height } = screen.getPrimaryDisplay().workAreaSize
-                createStartWindow(path.join(__dirname, "../foxtop.ico"), width, height)
+                createStartWindow()
             }
         },
         {
@@ -27,6 +28,7 @@ export function makeTray() {
             label: "Exit",
             click: function (): void {
                 console.log("Exit")
+                //tray = undefined
                 app.quit();
             }
         }

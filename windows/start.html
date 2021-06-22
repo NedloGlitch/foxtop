@@ -8,8 +8,31 @@
 </head>
 
 <body>
-  <div id="posdiv">
-    <img src="../mascots/eevee/Shime1.png" id="mascot">
+  <div id="hitbox">
+    <div id="posdiv">
+      <img src="../mascots/eevee/Shime7.png" id="mascot">
+    </div>
+    <div id="context-menu">
+      <div class="item" id="display-flex"><img src="../foxtop.ico" style="height: 32px; width: 32px;">
+        <p style="right: 2px;"><b>Foxtop</b></p></div>
+      <p class="item">Size:</p>
+      <input class="item" id="slider" type="range" min="1" max="100" value="50">
+      <select class="item" size="1">
+        <option value="1">1</option>
+        <option value="2">2</option>
+      </select>
+      <select class="item" size="1">
+        <option value="3">3</option>
+        <option value="4">4</option>
+      </select>
+      <select class="item" size="1">
+        <option value="3">Action</option>
+        <option value="4">No action :(</option>
+      </select>
+      <div class="item">Clone</div>
+      <div class="item">Dismiss</div>
+    </div>
+    <div id="menu-hitbox"></div>
   </div>
   <script src="drag.js"></script>
   <script src="actions.js"></script>

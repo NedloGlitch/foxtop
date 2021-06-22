@@ -1,7 +1,7 @@
-import { app, BrowserWindow, Tray, Menu, screen } from 'electron';
+import { app, BrowserWindow, Tray, Menu } from 'electron';
 import { createStartWindow } from './start'
 import { makeTray } from './tray'
-import * as path from 'path';
+import { join } from 'path';
 
 
 app.commandLine.appendSwitch('disable-gpu-compositing')
@@ -10,17 +10,17 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
   app.quit();
 }
 
-let tray: Tray | undefined;
-const iconpath = path.join(__dirname, "../foxtop.ico");
+let tray: Tray;
+const iconpath = join(__dirname, "../foxtop.ico");
 
 function initialize(): void {
-  const { width, height } = screen.getPrimaryDisplay().workAreaSize
+  
   //console.log(width, height)
-  createStartWindow(iconpath, width, height)
+  createStartWindow()
 
   tray = new Tray(iconpath)
   tray.setToolTip('Foxtop')
-  const trayMenu = Menu.buildFromTemplate(makeTray())
+  const trayMenu = Menu.buildFromTemplate(makeTray(join(__dirname, "../mascots/20x20.png")))
   tray.setContextMenu(trayMenu)
 }
 
@@ -39,8 +39,11 @@ app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
-    const { width, height } = screen.getPrimaryDisplay().workAreaSize
-    createStartWindow(iconpath, width, height);
+    createStartWindow();
   }
+});
+
+app.on('before-quit', function () {
+  tray.destroy();
 });
 

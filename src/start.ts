@@ -1,5 +1,5 @@
 import { join } from 'path';
-import { app, BrowserWindow, ipcMain, screen } from 'electron';
+import { app, BrowserWindow, screen } from 'electron';
 
 
 export const createStartWindow = (winList: BrowserWindow[], imgPath: string): void => {

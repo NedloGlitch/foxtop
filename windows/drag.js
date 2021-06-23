@@ -148,10 +148,10 @@ function hello() {
   }, iterCount(30, 35))
 }
 
-function legs() {
+function sit() {
   setTimeout( ()=> {
     if(state.falls == false && state.dragged == false && state.animated == true){
-    mascot.src = `${imgPath}shime${iteration}.png`; legs()} 
+    mascot.src = `${imgPath}shime${iteration}.png`; sit()} 
   }, iterCount(26, 29))
 }
 
@@ -168,7 +168,7 @@ function randomIdleAction(){
     if(randomlet == 10|| randomlet == 11) { state.animated=true; iteration=8; walk(); }
     else if(randomlet == 12 || randomlet == 13) { state.animated=true; iteration=8; walk(); }
     else if(randomlet == 14) { state.animated=true; iteration=30; hello(); }
-    else if(randomlet == 16) { state.animated=true; iteration=26; legs(); }
+    else if(randomlet == 16) { state.animated=true; iteration=26; sit(); }
     //else if(randomlet == 19) { hello(); state.animated=true }
 }
 
@@ -188,4 +188,27 @@ function iterCount(start, max) {
     }
   else{
     iteration++; return 300}
+}
+
+const actionSelector = document.getElementById('action-selector') ;
+actionSelector.onchange = () => {
+  const action = actionSelector[actionSelector.selectedIndex].value
+  switch (parseInt(action)) {
+    case 1:
+      state.idle = true;    iteration = 1; idleAnimation();
+      break;
+    case 2:
+        state.animated=true; iteration=8; walk();
+      break;
+    case 3:
+        state.animated=true; iteration=30; hello();
+      break;
+    case 4:
+        state.animated=true; iteration=26; sit();
+      break;
+    default:
+      break;
+  }
+  actionSelector.selectedIndex = 0;
+
 }

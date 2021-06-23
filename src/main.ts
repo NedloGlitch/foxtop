@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Tray, Menu, ipcMain, dialog } from 'electron';
+import { app, BrowserWindow, Tray, Menu, ipcMain} from 'electron';
 import { createStartWindow } from './start'
 import { makeTray } from './tray'
 import { join } from 'path';
@@ -41,7 +41,7 @@ function deleteWindow(id: number) {
 ipcMain.on('create-request', function (event, arg) {
   createStartWindow(winList, arg)
 });
-ipcMain.on('destroy', function (event, arg) {
+ipcMain.on('destroy', function (event) {
   deleteWindow(event.sender.id)
 });
 

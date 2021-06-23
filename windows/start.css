@@ -19,7 +19,7 @@ body {
 }
 
 #posdiv.motion{
-  transition: top 0.1s linear;
+  transition: all 0.1s linear;
 }
 
 #context-menu {
@@ -37,12 +37,15 @@ body {
 }
 
 #context-menu .item {
-  margin: 7px 7px;
+  margin: 2px 7px;
   font-size: 15px;
   color: #000;
 }
 
 #display-flex {
+  font-size: 15px;
+  margin: 2px 2px;
+  color: #000;
   display:flex;
   justify-content: space-between;
   align-items: center;

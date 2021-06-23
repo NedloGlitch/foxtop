@@ -34,7 +34,7 @@ function dragElement(elmnt) {
       state.dragged = true;
       contextMenu.classList.remove("visible");
       menuHitbox.classList.remove("visible");
-      mascot.src = "../mascots/eevee/Shime12.png"
+      mascot.src = "../mascots/eevee/shime12.png"
       // get the mouse cursor position at startup:
       pos3 = e.clientX;
       pos4 = e.clientY;
@@ -59,13 +59,15 @@ function dragElement(elmnt) {
 
   function closeDragElement() {
     // stop moving when mouse button is released:
-    mascot.src = "../mascots/eevee/Shime7.png"
+    mascot.src = "../mascots/eevee/shime36.png"
     posdiv.classList.add("motion");
     document.onmouseup = null;
     document.onmousemove = null;
+    state.dragged = false;
     state.falls = true;
     state.idle = false;
-    state.dragged = false;
+    state.animated = false;
+    //idleAnimation();
   }
 }
 
@@ -83,6 +85,7 @@ const state = {
   dragged: false,
   falls: true,
   idle: false,
+  animated:false
 };
 
 
@@ -101,19 +104,76 @@ function mainRunner() {
     else {
       state.falls = false;
       posdiv.style.top = window.innerHeight-128+"px"
-      mascot.src = "../mascots/eevee/Shime37.png"
+      mascot.src = "../mascots/eevee/shime37.png"
       posdiv.classList.remove("motion");
       }
     }
-  else if(state.dragged == true) { 
-    ;
-  }
+  
   else if(state.falls == false && state.idle == false) { 
-    setTimeout(()=> mascot.src = "../mascots/eevee/Shime1.png", 175)
     state.idle = true;
+    iteration = 1;
+    idleAnimation()
   }
-  else if (state.idle == true){
-    ;
-  }
+  
   requestAnimationFrame(mainRunner);
+}
+
+setTimeout(()=> {mascot.src = "../mascots/eevee/shime1.png"; idleAnimation()}, 100)
+
+var iteration;
+
+function idleAnimation(){
+  setTimeout( ()=> {
+    if(state.falls == false && state.dragged == false && state.animated == false){
+    mascot.src = "../mascots/eevee/shime"+iteration+".png"; idleAnimation()} 
+  }, iterCount(1, 7))
+}
+
+function hello() {
+  setTimeout( ()=> {
+    if(state.falls == false && state.dragged == false && state.animated == true){
+    mascot.src = "../mascots/eevee/shime"+iteration+".png"; hello()} 
+  }, iterCount(30, 35))
+}
+
+function legs() {
+  setTimeout( ()=> {
+    if(state.falls == false && state.dragged == false && state.animated == true){
+    mascot.src = "../mascots/eevee/shime"+iteration+".png"; legs()} 
+  }, iterCount(26, 29))
+}
+
+function walk() {
+  setTimeout( ()=> {
+    if(state.falls == false && state.dragged == false && state.animated == true){
+    mascot.src = "../mascots/eevee/shime"+iteration+".png";
+    if(parseInt(posdiv.style.left)>0){posdiv.style.left = parseInt(posdiv.style.left)-5+"px"} walk()} 
+  }, iterCount(8, 11))
+}
+
+function randomIdleAction(){
+  var randomvar = Math.floor(Math.random() * 20)
+    if(randomvar == 10|| randomvar == 11) { state.animated=true; iteration=8; walk(); }
+    else if(randomvar == 12|| randomvar == 13) { state.animated=true; iteration=8; walk(); }
+    else if(randomvar == 14|| randomvar == 15) { state.animated=true; iteration=30; hello(); }
+    else if(randomvar == 16|| randomvar == 17) { state.animated=true; iteration=26; legs(); }
+    //else if(randomvar == 19) { hello(); state.animated=true }
+}
+
+function randomContinueAction(){
+  var randomvar = Math.floor(Math.random() * 4)
+  //alert("random walk ")
+    if(randomvar == 3) { state.animated=false; iteration=1; idleAnimation() }
+    //else if(randomvar == 19) { hello(); state.animated=true }
+}
+
+function iterCount(start, max) {
+  if(iteration==max) {
+    iteration=start;
+    if(state.animated == false){randomIdleAction(); return 1100}
+    else if(state.animated == true){randomContinueAction(); return 300}
+    else { return 300 }
+    }
+  else{
+    iteration++; return 300}
 }
